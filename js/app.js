@@ -20,7 +20,8 @@ Domineering.changePlayer = function(){
   console.log(this.currPlayer);
 };
 
-Domineering.playMove = function(){
+Domineering.playMove = function(e){
+  console.log(e.target);
   console.log('I have been clicked');
   Domineering.changePlayer();
 };
@@ -38,6 +39,7 @@ Domineering.createBoard = function () {
   body.appendChild(grid);
   for (var i = 0; i < (this.base * this.base); i++) {
     var square = document.createElement('li');
+    square.setAttribute('id', i);
     grid.appendChild(square);
   }
   Domineering.addButtonFunctionality();
