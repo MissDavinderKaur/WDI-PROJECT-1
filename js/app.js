@@ -28,10 +28,13 @@ Domineering.changeBoxColor = function(player, square) {
 
 Domineering.makeAmove = function (e) {
   if (e.target.id < ((this.base * this.base) - this.base)) {
-    this.changeBoxColor('Player A', e.target.id);
     var secondBoxA = parseInt(e.target.id) + this.base;
-    this.changeBoxColor('Player A', secondBoxA);
-    this.changePlayer();
+    if (e.target.getAttribute('class') === null &&
+    document.getElementById(secondBoxA).getAttribute('class') === null) {
+      this.changeBoxColor('Player A', e.target.id);
+      this.changeBoxColor('Player A', secondBoxA);
+      this.changePlayer();
+    }
   }
 };
 
@@ -41,26 +44,24 @@ Domineering.makeBmove = function (e) {
     unallowedIndexes.push((i * this.base) -1);
   }
 
-  console.log(unallowedIndexes);
-  console.log(e.target.id);
-
   if (unallowedIndexes.indexOf(parseInt(e.target.id)) !== -1) {
     //user is not allowed to make this move
   } else {
-    this.changeBoxColor('Player B', e.target.id);
     var secondBoxB = parseInt(e.target.id) + 1;
-    this.changeBoxColor('Player B', secondBoxB);
-    this.changePlayer();
+    if (e.target.getAttribute('class') === null &&
+    document.getElementById(secondBoxB).getAttribute('class') === null) {
+      this.changeBoxColor('Player B', e.target.id);
+      this.changeBoxColor('Player B', secondBoxB);
+      this.changePlayer();
+    }
   }
 };
 
 Domineering.playMove = function(e) {
-  if (e.target.getAttribute('class') === null) {
-    if (this.currPlayer === 'Player A') {
-      this.makeAmove(e);
-    } else {
-      this.makeBmove(e);
-    }
+  if (this.currPlayer === 'Player A') {
+    this.makeAmove(e);
+  } else {
+    this.makeBmove(e);
   }
 };
 
