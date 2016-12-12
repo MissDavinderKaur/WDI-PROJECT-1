@@ -18,6 +18,27 @@ Domineering.changePlayer = function() {
   }
 };
 
+// Can Player A/Blue/vertical make a move?
+Domineering.canPlayerAmove = function() {
+  var options = 0;
+  for (var i = 0; i < ((this.base * this.base) - this.base); i++) {
+    var classOfIndex = (document.getElementById(i)).getAttribute('class');
+    var possibleSecondBoxB = i + this.base;
+    var classOfSecondBox = (document.getElementById(possibleSecondBoxB)).getAttribute('class');
+
+    if (classOfIndex === null && classOfSecondBox === null) {
+      options++;
+    }
+  }
+
+  if (options > 0) {
+    console.log('Player A has ' + options + ' available');
+    return true;
+  } else {
+    return false;
+  }
+};
+
 // Can Player B/Red/Horizonatal make a move?
 Domineering.canPlayerBmove = function() {
   var options = 0;
@@ -38,8 +59,6 @@ Domineering.canPlayerBmove = function() {
     return false;
   }
 };
-
-
 
 Domineering.changeBoxColor = function(player, square) {
   if (player === 'Player A'){
@@ -63,7 +82,12 @@ Domineering.makeBmove = function (e) {
     document.getElementById(secondBoxB).getAttribute('class') === null) {
       this.changeBoxColor('Player B', e.target.id);
       this.changeBoxColor('Player B', secondBoxB);
-      this.changePlayer();
+      if (Domineering.canPlayerAmove()){
+        console.log('player A has options');
+        this.changePlayer();
+      } else {
+        alert('Player A (blue) cannot make a move therfore Player B (red) has won');
+      }
     }
   }
 };
