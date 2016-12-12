@@ -7,18 +7,12 @@ h1 {
   color: pink;
 }
 
-div {
-  border: 1px solid white;
-  padding: 0px;
-  margin: 0 auto;
-}
-
 #leftPlayer, #rightPlayer {
   border: 1px solid gray;
   width: 200px;
   height: 400px;
   float: left;
-  margin: 0 auto;
+  margin: 0;
 }
 
 p{
