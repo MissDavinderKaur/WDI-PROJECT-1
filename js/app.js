@@ -8,10 +8,10 @@ function Domineering (base) {
 Domineering.changePlayer = function() {
   if (this.currPlayer === 'Player A'){
     this.currPlayer = 'Player B';
-    document.getElementById('currentPlayer').innerHTML = this.PlayerB;
+    document.getElementById('currentPlayer').innerHTML = 'Current Player: ' + this.PlayerB;
   } else {
     this.currPlayer = 'Player A';
-    document.getElementById('currentPlayer').innerHTML = this.PlayerA;
+    document.getElementById('currentPlayer').innerHTML = 'Current Player: ' + this.PlayerA;
   }
 };
 
@@ -83,7 +83,7 @@ Domineering.makeBmove = function (e) {
         console.log('player A has options');
         this.changePlayer();
       } else {
-        alert('Player A (blue) cannot make a move therfore Player B (red) has won');
+        document.getElementById('currentPlayer').innerHTML = this.playerA + ' cannot make a move. Therefore the winner is ' + this.playerB;
       }
     }
   }
@@ -97,10 +97,9 @@ Domineering.makeAmove = function (e) {
       this.changeBoxColor('Player A', e.target.id);
       this.changeBoxColor('Player A', secondBoxA);
       if (Domineering.canPlayerBmove()){
-        console.log('player B has options');
         this.changePlayer();
       } else {
-        alert('Player B (red) cannot make a move therfore Player A (blue) has won');
+        document.getElementById('currentPlayer').innerHTML = this.playerB + ' cannot make a move. Therefore the winner is ' + this.playerA;
       }
     }
   }
@@ -122,8 +121,9 @@ Domineering.addButtonFunctionality = function() {
 };
 
 Domineering.createBoard = function () {
-  document.getElementById('playerA').innerHTML = playerA;
-  document.getElementById('playerB').innerHTML = playerB;
+  document.getElementById('playerA').innerHTML = this.playerA;
+  document.getElementById('playerB').innerHTML = this.playerB;
+  document.getElementById('currentPlayer').innerHTML = 'Current player: ' + this.playerA;
 
   var body = document.getElementById('gameGrid');
   var grid = document.createElement('ul');
