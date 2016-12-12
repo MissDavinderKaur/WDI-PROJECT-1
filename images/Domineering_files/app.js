@@ -14,11 +14,12 @@ function Domineering (base) {
 //Reset the game
 Domineering.resetGame = function(e) {
   e.preventDefault();
-  $('#currentPlayer').remove();
-  $('#reset').remove();
-  $('#leftPlayer').remove();
-  $('#gameGrid').remove();
-  $('#rightPlayer').remove();
+  $('#currentPlayer').hide();
+  $('#reset').hide();
+  $('#leftPlayer').hide();
+  $('li').attr('class', '');
+  $('#gameGrid').hide();
+  $('#rightPlayer').hide();
   $('#userInputForm').show();
 };
 
