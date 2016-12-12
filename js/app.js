@@ -1,20 +1,17 @@
 function Domineering (base) {
   this.base = base;
+  this.playerA;
+  this.playerB;
   this.currPlayer = 'Player A';
 }
-
-var Domineering = new Domineering(8);
-
-
-Domineering.start = function() {
-  Domineering.createBoard();
-};
 
 Domineering.changePlayer = function() {
   if (this.currPlayer === 'Player A'){
     this.currPlayer = 'Player B';
+    document.getElementById('currentPlayer').innerHTML = this.PlayerB;
   } else {
     this.currPlayer = 'Player A';
+    document.getElementById('currentPlayer').innerHTML = this.PlayerA;
   }
 };
 
@@ -125,6 +122,9 @@ Domineering.addButtonFunctionality = function() {
 };
 
 Domineering.createBoard = function () {
+  document.getElementById('playerA').innerHTML = playerA;
+  document.getElementById('playerB').innerHTML = playerB;
+
   var body = document.getElementById('gameGrid');
   var grid = document.createElement('ul');
   body.appendChild(grid);
@@ -136,4 +136,26 @@ Domineering.createBoard = function () {
   Domineering.addButtonFunctionality();
 };
 
-document.addEventListener('DOMContentLoaded', Domineering.start);
+Domineering.setupGame = function(e) {
+  e.preventDefault();
+  var game;
+  if (document.getElementById('small').checked) {
+    game = new Domineering(5);
+  } else if (document.getElementById('medium').checked) {
+    game = new Domineering(7);
+  } else {
+    game = new Domineering(9);
+  }
+  game.playerA = document.getElementById('playerAname').value;
+  game.playerB = document.getElementById('playerBname').value;
+
+  document.getElementById('userInputForm').style.display = 'none';
+
+  Domineering.createBoard.call(game);
+};
+
+Domineering.getPlayersDetails = function() {
+  document.getElementById('userInputForm').addEventListener('submit', Domineering.setupGame);
+};
+
+document.addEventListener('DOMContentLoaded', Domineering.getPlayersDetails);

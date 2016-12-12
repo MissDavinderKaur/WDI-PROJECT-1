@@ -7,16 +7,27 @@
   <script src="js/app.js" charset="utf-8"></script>
 </head>
 <body>
-  <div id="gameBoard">
+  <h1>Domineering...</h1>
+  <form id="userInputForm">
+    Player 1: <input type="text" id="playerAname">
+    Player 2: <input type="text" id="playerBname" label="Player 2">
+    <br> <br>
+    Small<input type="radio" name="gridSize" id="small" value="Small">
+    Medium<input type="radio" name="gridSize" id="medium" value="Medium">
+    Large<input type="radio" name="gridSize" id="large" value="Large">
+    <br> <br>
+    <input type="submit" name="submit">
+  </form>
+    <p id="currentPlayer"></p>
     <div id="leftPlayer">
+      <p id="playerA"></p>
     </div>
 
     <div id="gameGrid">
     </div>
 
     <div id="rightPlayer">
+      <p id="playerB"></p>
     </div>
-      
-  </div>
 </body>
 </html>

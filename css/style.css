@@ -1,11 +1,30 @@
 body{
-  background-color: black;
+  background-color: gray;
   text-align: center;
+}
+
+h1 {
+  color: pink;
 }
 
 div {
   border: 1px solid white;
   padding: 0px;
+  margin: 0;
+}
+
+#leftPlayer, #rightPlayer {
+  width: 200px;
+  height: 400px;
+  float: left;
+}
+
+p{
+  color: pink;
+}
+
+#gameGrid {
+  float: left;
 }
 
 ul {
@@ -35,4 +54,5 @@ li {
 
 .Bplayed {
   background-color: red;
+}
 }
