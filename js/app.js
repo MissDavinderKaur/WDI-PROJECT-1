@@ -1,3 +1,5 @@
+var game;
+
 function Domineering (base) {
   this.base = base;
   this.playerA;
@@ -6,12 +8,13 @@ function Domineering (base) {
 }
 
 Domineering.changePlayer = function() {
-  if (this.currPlayer === 'Player A'){
-    this.currPlayer = 'Player B';
-    document.getElementById('currentPlayer').innerHTML = 'Current Player: ' + this.PlayerB;
+  console.log('wanting to change player', this);
+  if (game.currPlayer === 'Player A'){
+    game.currPlayer = 'Player B';
+    document.getElementById('currentPlayer').innerHTML = 'Current Player: ' + game.playerB;
   } else {
-    this.currPlayer = 'Player A';
-    document.getElementById('currentPlayer').innerHTML = 'Current Player: ' + this.PlayerA;
+    game.currPlayer = 'Player A';
+    document.getElementById('currentPlayer').innerHTML = 'Current Player: ' + game.playerA;
   }
 };
 
@@ -29,7 +32,6 @@ Domineering.canPlayerAmove = function() {
   }
 
   if (options > 0) {
-    console.log('Player A has ' + options + ' available');
     return true;
   } else {
     return false;
@@ -50,7 +52,6 @@ Domineering.canPlayerBmove = function() {
   }
 
   if (options > 0) {
-    console.log('Player B has ' + options + ' available');
     return true;
   } else {
     return false;
@@ -77,11 +78,10 @@ Domineering.makeBmove = function (e) {
     var secondBoxB = parseInt(e.target.id) + 1;
     if (e.target.getAttribute('class') === null &&
     document.getElementById(secondBoxB).getAttribute('class') === null) {
-      this.changeBoxColor('Player B', e.target.id);
-      this.changeBoxColor('Player B', secondBoxB);
-      if (Domineering.canPlayerAmove()){
-        console.log('player A has options');
-        this.changePlayer();
+      Domineering.changeBoxColor('Player B', e.target.id);
+      Domineering.changeBoxColor('Player B', secondBoxB);
+      if (Domineering.canPlayerAmove.call(game)){
+        Domineering.changePlayer.call(game);
       } else {
         document.getElementById('currentPlayer').innerHTML = this.playerA + ' cannot make a move. Therefore the winner is ' + this.playerB;
       }
@@ -94,10 +94,10 @@ Domineering.makeAmove = function (e) {
     var secondBoxA = parseInt(e.target.id) + this.base;
     if (e.target.getAttribute('class') === null &&
     document.getElementById(secondBoxA).getAttribute('class') === null) {
-      this.changeBoxColor('Player A', e.target.id);
-      this.changeBoxColor('Player A', secondBoxA);
-      if (Domineering.canPlayerBmove()){
-        this.changePlayer();
+      Domineering.changeBoxColor('Player A', e.target.id);
+      Domineering.changeBoxColor('Player A', secondBoxA);
+      if (Domineering.canPlayerBmove.call(game)){
+        Domineering.changePlayer.call(game);
       } else {
         document.getElementById('currentPlayer').innerHTML = this.playerB + ' cannot make a move. Therefore the winner is ' + this.playerA;
       }
@@ -107,22 +107,22 @@ Domineering.makeAmove = function (e) {
 
 Domineering.playMove = function(e) {
   if (this.currPlayer === 'Player A') {
-    this.makeAmove(e);
+    Domineering.makeAmove.call(game, e);
   } else {
-    this.makeBmove(e);
+    Domineering.makeBmove.call(game, e);
   }
 };
 
 Domineering.addButtonFunctionality = function() {
   var squares = document.getElementsByTagName('li');
   for (var i = 0; i < squares.length; i++) {
-    squares[i].addEventListener('click', Domineering.playMove.bind(this));
+    squares[i].addEventListener('click', Domineering.playMove.bind(game));
   }
 };
 
 Domineering.createBoard = function () {
-  document.getElementById('playerA').innerHTML = this.playerA;
-  document.getElementById('playerB').innerHTML = this.playerB;
+  document.getElementById('leftPlayer').innerHTML = this.playerA;
+  document.getElementById('rightPlayer').innerHTML = this.playerB;
   document.getElementById('currentPlayer').innerHTML = 'Current player: ' + this.playerA;
 
   var body = document.getElementById('gameGrid');
@@ -133,12 +133,14 @@ Domineering.createBoard = function () {
     square.setAttribute('id', i);
     grid.appendChild(square);
   }
-  Domineering.addButtonFunctionality();
+  document.getElementsByTagName('ul')[0].style.width = (50 * this.base) + 'px';
+  document.getElementsByTagName('ul')[0].style.height = (50 * this.base) + 'px';
+
+  Domineering.addButtonFunctionality.call(game);
 };
 
 Domineering.setupGame = function(e) {
   e.preventDefault();
-  var game;
   if (document.getElementById('small').checked) {
     game = new Domineering(5);
   } else if (document.getElementById('medium').checked) {
