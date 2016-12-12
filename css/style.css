@@ -12,6 +12,7 @@ h1 {
 }
 
 #leftPlayer, #rightPlayer {
+  background-color: white;
   border: 1px solid gray;
   width: 200px;
   height: 400px;

@@ -11,6 +11,12 @@ function Domineering (base) {
 
 //********** From this point, the code reads from the bottom upwards ******
 
+//Reset the game
+Domineering.resetGame = function() {
+  $('li').attr('class', '');
+};
+
+
 //Change the player
 Domineering.changePlayer = function() {
   if (game.currPlayer === 'Player A'){
@@ -130,28 +136,31 @@ Domineering.playMove = function(e) {
 
 //Game play functionality needs to be added to each square
 Domineering.addButtonFunctionality = function() {
-  var squares = document.getElementsByTagName('li');
-  for (var i = 0; i < squares.length; i++) {
-    squares[i].addEventListener('click', Domineering.playMove.bind(game));
-  }
+  $('li').on('click', Domineering.playMove.bind(game));
 };
+
 
 //Based on the user input the GUI is generated
 Domineering.createBoard = function () {
-  $('#leftPlayer').html(this.playerA);
-  $('#rightPlayer').html(this.playerB);
-  $('#currentPlayer').html('Current player: ' + this.playerA);
+  $('body').append('<p id="currentPlayer">' + this.playerA + '</p>');
 
-  var body = document.getElementById('gameGrid');
-  var grid = document.createElement('ul');
-  body.appendChild(grid);
+  $('body').append('<div id="leftPlayer">' + this.playerA + '</div>');
+  $('#leftPlayer').css('height',(50 * this.base));
+
+  $('body').append('<div id="gameGrid"></div>');
+  $('#gameGrid').append('<ul></ul>');
+
   for (var i = 0; i < (this.base * this.base); i++) {
-    var square = document.createElement('li');
-    square.setAttribute('id', i);
-    grid.appendChild(square);
+    var $square = $('<li></li>');
+    $square.attr('id', i);
+    $('ul').append($square);
   }
-  $('ul')[0].style.width = (50 * this.base) + 'px';
-  $('ul')[0].style.height = (50 * this.base) + 'px';
+
+  $('ul').css('width',(50 * this.base));
+  $('ul').css('height',(50 * this.base));
+
+  $('body').append('<div id="rightPlayer">' + this.playerB + '</div>');
+  $('#rightPlayer').css('height',(50 * this.base));
 
   Domineering.addButtonFunctionality.call(game);
 };
