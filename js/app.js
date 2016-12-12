@@ -9,7 +9,7 @@ function Domineering (base) {
   this.currPlayer = 'Player A';
 }
 
-//********** From this point, the code reads bottom to top ******
+//********** From this point, the code reads from the bottom upwards ******
 
 //Change the player
 Domineering.changePlayer = function() {
