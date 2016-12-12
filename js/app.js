@@ -1,11 +1,15 @@
+//Game variable
 var game;
 
+//Constructor for the object
 function Domineering (base) {
   this.base = base;
   this.playerA;
   this.playerB;
   this.currPlayer = 'Player A';
 }
+
+//********** From this point, the code reads bottom to top ******
 
 //Change the player
 Domineering.changePlayer = function() {
@@ -19,7 +23,7 @@ Domineering.changePlayer = function() {
 };
 
 
-//Check for any 2 boxes (one above another)that are empty. If there are any, then the //user has options and so play can continue.
+//Check for any 2 boxes (one above another)that are empty. If there are any, then the user has options and so play can continue.
 Domineering.canPlayerAmove = function() {
   var options = 0;
   for (var i = 0; i < ((this.base * this.base) - this.base); i++) {
@@ -36,7 +40,7 @@ Domineering.canPlayerAmove = function() {
   }
 };
 
-//Check for any side-by-side boxes that are empty. IF there are any, then the //user has options and so play can continue.
+//Check for any side-by-side boxes that are empty. IF there are any, then the user has options and so play can continue.
 Domineering.canPlayerBmove = function() {
   var options = 0;
   for (var i = 0; i < ((this.base * this.base) -1); i++) {
@@ -60,11 +64,11 @@ Domineering.changeBoxColor = function(player, square1, square2) {
     $('#' + square2).attr('class', 'Aplayed');
   } else {
     $('#' + square1).attr('class', 'Bplayed');
-    $('#' + square2).attr('class', 'Aplayed');
+    $('#' + square2).attr('class', 'Bplayed');
   }
 };
 
-//Using the checkBoxes method, work out if the two boxes are empty. if so //then the move selected by Player A is valid and can be made. Then if Player //A can make a move, change the player otherwise alert winner.
+//Using the checkBoxes method, work out if the two boxes are empty. if so then the move selected by Player B is valid and can be made. Then if Player A can make a move, change the player otherwise alert winner.
 Domineering.makeBmove = function (e) {
   var unallowedIndexes = [];
   for (var i = 1; i <= this.base; i++) {
@@ -87,11 +91,12 @@ Domineering.makeBmove = function (e) {
   }
 };
 
-//Using the checkBoxes method, work out if the two boxes are empty. if so //then the move selected by Player A is valid and can be made. Then, if //Player B is able to make a move then change the player otherwise alert winner.
+//Using the checkBoxes method, work out if the two boxes are empty. if so then the move selected by Player A is valid and can be made. Then, if Player B is able to make a move then change the player otherwise alert winner.
 Domineering.makeAmove = function (e) {
   if (e.target.id < ((this.base * this.base) - this.base)) {
-    var secondBoxA = parseInt(e.target.id) + this.base;
-    if (Domineering.checkBoxes(e.target.id, secondBoxA)) {
+    var firstBoxA = (e.target.id).toString();
+    var secondBoxA = (parseInt(e.target.id) + this.base).toString();
+    if (Domineering.checkBoxes(firstBoxA, secondBoxA)) {
       Domineering.changeBoxColor('Player A', e.target.id, secondBoxA);
       if (Domineering.canPlayerBmove.call(game)){
         Domineering.changePlayer.call(game);
@@ -102,12 +107,12 @@ Domineering.makeAmove = function (e) {
   }
 };
 
-//internal method to check the classes of the 2 boxes selected by each user
+//internal method to check the classes of the 2 boxes selected by each user - required before any move is made.
 Domineering.checkBoxes = function (boxOne, boxTwo){
-  var classOfBoxOne = (document.getElementById(boxOne)).getAttribute('class');
-  var classOfSecondBox = (document.getElementById(boxTwo)).getAttribute('class');
+  var classOfBoxOne = $('#' + boxOne).attr('class');
+  var classOfSecondBox = $('#' + boxTwo).attr('class');
 
-  if(classOfBoxOne === null && classOfSecondBox){
+  if(classOfBoxOne === undefined && classOfSecondBox === undefined){
     return true;
   } else {
     return false;
@@ -151,7 +156,7 @@ Domineering.createBoard = function () {
   Domineering.addButtonFunctionality.call(game);
 };
 
-//Based on the user input, the game is set up (internally)
+//Based on the user input, the game object is set up (internally)
 Domineering.setupGame = function(e) {
   e.preventDefault();
   if ($('#small').prop('checked')) {
@@ -169,7 +174,7 @@ Domineering.setupGame = function(e) {
   Domineering.createBoard.call(game);
 };
 
-//Add event listener to the player input form - they enter usernames and //select the game difficulty
+//Add event listener to the player input form - they enter usernames //and select the game difficulty before the gameboard is generated.
 Domineering.playersDetails = function() {
   $('#userInputForm').on('submit', Domineering.setupGame);
 };

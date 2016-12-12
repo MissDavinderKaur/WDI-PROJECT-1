@@ -1,6 +1,10 @@
 body{
+  background: url("../images/background.jpg");
   background-color: gray;
   text-align: center;
+}
+main{
+  background-color: white;
 }
 
 h1 {
