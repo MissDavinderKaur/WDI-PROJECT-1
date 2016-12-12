@@ -18,23 +18,34 @@ Domineering.changePlayer = function() {
   }
 };
 
+// Can Player B/Red/Horizonatal make a move?
+Domineering.canPlayerBmove = function() {
+  var options = 0;
+  for (var i = 0; i < ((this.base * this.base) -1); i++) {
+    var classOfIndex = (document.getElementById(i)).getAttribute('class');
+    var possibleSecondBoxB = i + 1;
+    var classOfSecondBox = (document.getElementById(possibleSecondBoxB)).getAttribute('class');
+
+    if (classOfIndex === null && classOfSecondBox === null) {
+      options++;
+    }
+  }
+
+  if (options > 0) {
+    console.log('Player B has ' + options + ' available');
+    return true;
+  } else {
+    return false;
+  }
+};
+
+
+
 Domineering.changeBoxColor = function(player, square) {
   if (player === 'Player A'){
     document.getElementById(square).setAttribute('class', 'Aplayed');
   } else {
     document.getElementById(square).setAttribute('class', 'Bplayed');
-  }
-};
-
-Domineering.makeAmove = function (e) {
-  if (e.target.id < ((this.base * this.base) - this.base)) {
-    var secondBoxA = parseInt(e.target.id) + this.base;
-    if (e.target.getAttribute('class') === null &&
-    document.getElementById(secondBoxA).getAttribute('class') === null) {
-      this.changeBoxColor('Player A', e.target.id);
-      this.changeBoxColor('Player A', secondBoxA);
-      this.changePlayer();
-    }
   }
 };
 
@@ -53,6 +64,23 @@ Domineering.makeBmove = function (e) {
       this.changeBoxColor('Player B', e.target.id);
       this.changeBoxColor('Player B', secondBoxB);
       this.changePlayer();
+    }
+  }
+};
+
+Domineering.makeAmove = function (e) {
+  if (e.target.id < ((this.base * this.base) - this.base)) {
+    var secondBoxA = parseInt(e.target.id) + this.base;
+    if (e.target.getAttribute('class') === null &&
+    document.getElementById(secondBoxA).getAttribute('class') === null) {
+      this.changeBoxColor('Player A', e.target.id);
+      this.changeBoxColor('Player A', secondBoxA);
+      if (Domineering.canPlayerBmove()){
+        console.log('player B has options');
+        this.changePlayer();
+      } else {
+        alert('Player B (red) cannot make a move therfore Player A (blue) has won');
+      }
     }
   }
 };
