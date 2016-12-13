@@ -55,14 +55,22 @@ Domineering.canPlayerAmove = function() {
   }
 };
 
-//Check for any side-by-side boxes that are empty. IF there are any, then the user has options and so play can continue.
+//Check for any side-by-side boxes that are empty (not on the edge of the grid!). IF there are any, then the user has options and so play can continue.
 Domineering.canPlayerBmove = function() {
+  var unallowedIndexes = [];
+  for (var j = 1; j <= this.base; j++) {
+    unallowedIndexes.push((j * this.base) -1);
+  }
 
   var options = 0;
-  for (var i = 0; i < ((this.base * this.base) - this.base); i++) {
-    var possibleSecondBoxB = i + 1;
-    if (Domineering.checkBoxes(i, possibleSecondBoxB)) {
-      options++;
+  for (var i = 0; i < ((this.base * this.base) - 1); i++) {
+    if (unallowedIndexes.indexOf(i) !== -1) {
+      //user will not be allowed to make this move
+    } else {
+      var possibleSecondBoxB = i + 1;
+      if (Domineering.checkBoxes(i, possibleSecondBoxB)) {
+        options++;
+      }
     }
   }
 
