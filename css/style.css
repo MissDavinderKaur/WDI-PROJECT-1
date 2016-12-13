@@ -1,5 +1,22 @@
-body{
-  background: url("../images/background.jpg");
+body {
+  background: #FAFAFA;
+  font-family: 'Nunito Sans', sans-serif;
+  color: #333;
+}
+
+.welcome {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 1;
+}
+
+.welcome p {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: justify;
 }
 
 main{
@@ -8,8 +25,14 @@ main{
 }
 
 h1, p, form, div {
-  font-family: "Trebuchet MS", Helvetica, sans-serif;
   color: #454B47;
+}
+
+h1 {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 90px;
+  font-family: 'Russo One', sans-serif;
 }
 
 input[type="radio"] {
@@ -17,38 +40,47 @@ input[type="radio"] {
 }
 
 #submit, #reset {
-  font-weight: bold;
-  border: none;
-  width: 100px;
-  height: 30px;
-  margin: 15px;
+  background: #5FAE57;
+  margin: 10px;
+  padding: 10px 60px;
+  font-size: 16px;
+  border: 1px solid #378B2E;
+  border-radius: 2px;
+  color: #fff;
 }
+
+/*#submit:active, #reset:active {
+transform: translateY(5px);
+}*/
 
 #gameBoard {
   margin: 0 auto;
+  width: 955px;
 }
 
 #currentPlayer {
-  color: white;
   text-align: center;
-  background-color: #7F7A52;
+  /* background-color: #E8E8E8; */
   width: 300px;
   margin: 25px auto;
   padding: 10px;
 }
 
-#leftPlayer {
-  margin-left: 45px;
+hr {
+  margin-top: -70px;
+  height: 15px;
+  width: 670px;
+  border-radius: 2px;
+  background-image: linear-gradient(#714C8F, #5FAE57);
 }
 
 #leftPlayer, #rightPlayer {
   text-align: center;
   background-color: #fafafa;
-  border: 6px solid #454B47;
   width: 200px;
   height: 400px;
   float: left;
-  margin: 0;
+  margin: 0px 5px;
   padding: 20px;
 }
 
@@ -57,9 +89,12 @@ input[type="radio"] {
 }
 
 ul {
-  border: 1px solid #454B47;
+  text-align: center;
   margin: 0 auto;
   padding: 0;
+  -webkit-box-shadow: 0px 2px 38px -10px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 2px 38px -10px rgba(0,0,0,0.75);
+  box-shadow: 0px 2px 38px -10px rgba(0,0,0,0.75);
 }
 
 li {
@@ -67,16 +102,27 @@ li {
   float: left;
   width: 50px;
   height: 50px;
-  border: 1px solid #454B47;
+  border: 1px solid #e2e2e2;
   box-sizing: border-box;
-  background-color: #C3C5C4;
+  background-color: #f2f2f2;
   padding: 0px;
 }
 
-.Aplayed {
-  background-color: #28535A;
+/*#playerAname {
+background: #5FAE57;
+padding: 10px;
+border: 0;
+color: #fff;
 }
 
-.Bplayed {
-  background-color: #A5302F;
-}
+
+
+#playerBname {
+background: #9173AA;
+padding: 10px;
+border: 0;
+color: #fff;
+}*/
+
+.Aplayed { background-color: #714C8F; }
+.Bplayed { background-color: #5FAE57; }

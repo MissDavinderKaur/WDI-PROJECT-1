@@ -14,12 +14,15 @@ function Domineering (base) {
 //Reset the game
 Domineering.resetGame = function(e) {
   e.preventDefault();
-  $('#currentPlayer').remove();
-  $('#reset').remove();
-  $('#leftPlayer').remove();
-  $('#gameGrid').remove();
-  $('#rightPlayer').remove();
+  $('#gameBoard').empty();
+  $('.welcome').show();
   $('#userInputForm').show();
+  // $('#currentPlayer').remove();
+  // $('#reset').remove();
+  // $('#leftPlayer').remove();
+  // $('#gameGrid').remove();
+  // $('#rightPlayer').remove();
+  // $('#userInputForm').show();
 };
 
 
@@ -164,12 +167,12 @@ Domineering.addButtonFunctionality = function() {
 //Based on the user input the GUI is generated
 Domineering.createBoard = function () {
   $('#body').append('<div id="gameBoard"></div>');
-  $('#gameBoard').css('width', ((50 * this.base) + 600));
-  $('#gameBoard').css('height', ((50 * this.base) + 200));
+  // $('#gameBoard').css('width', ((50 * this.base) + 600));
+  // $('#gameBoard').css('height', ((50 * this.base) + 200));
 
-  $('#gameBoard').append('<button type="button" id="reset">Reset</button>');
-  $('#reset').css('float', 'right');
-  $('#reset').on('click', Domineering.resetGame);
+  $('#gameBoard').append('<h1>Domineering<h1>');
+  $('#gameBoard').append('<hr>');
+  $('#gameBoard').find('hr').css('width', '670px');
 
   $('#gameBoard').append('<p id="currentPlayer"> Current Player: ' + this.playerA + '</p>');
 
@@ -196,12 +199,17 @@ Domineering.createBoard = function () {
   $('#rightPlayer').css('width',200);
   $('#rightPlayer').css('height',(50 * (this.base-1)));
 
+  $('#gameBoard').append('<button type="button" id="reset">Reset</button>');
+  $('#reset').css('clear', 'both');
+  $('#reset').on('click', Domineering.resetGame);
+
   Domineering.addButtonFunctionality.call(game);
 };
 
 //Based on the user input, the game object is set up (internally)
 Domineering.setupGame = function(e) {
   e.preventDefault();
+  $('.welcome').hide();
   if ($('#small').prop('checked')) {
     game = new Domineering(5);
   } else if ($('#medium').prop('checked')) {

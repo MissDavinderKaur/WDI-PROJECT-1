@@ -3,31 +3,34 @@
 <head>
   <meta charset="utf-8">
   <title>Domineering</title>
+  <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <script
-src="https://code.jquery.com/jquery-3.1.1.js"
-integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
-crossorigin="anonymous"></script>
+  src="https://code.jquery.com/jquery-3.1.1.js"
+  integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+  crossorigin="anonymous"></script>
   <script src="js/app.js" charset="utf-8"></script>
 </head>
 <body>
   <main>
-  <h1>Domineering.....</h1>
-  <p> RULES: Two players take turns to place dominoes on the grid, covering up squares. One plays tiles vertically, the other plays horizontally. The first player who cannot move loses. </p>
-  <form id="userInputForm">
-    Player 1: <input type="text" id="playerAname">
-    <br> <br>
-    Player 2: <input type="text" id="playerBname">
-    <br> <br>
-    <input type="radio" name="gridSize" id="small" value="Small"> Small
-    <input type="radio" name="gridSize" id="medium" value="Medium"> Medium
-    <input type="radio" name="gridSize" id="large" value="Large"> Large
-    <br>
-    <input type="submit" id="submit" name="Submit">
-  </form>
+    <div class="welcome">
+      <h1>Domineering</h1>
+      <hr>
+      <p> RULES: Two players take turns to place dominoes on the grid, covering up squares. One plays tiles vertically, the other plays horizontally. The first player who cannot move loses. </p>
+      <form id="userInputForm">
+        Player 1: <input type="text" id="playerAname">
+        Player 2: <input type="text" id="playerBname">
+        <br>
+        <input type="radio" name="gridSize" id="small" value="Small"> Small
+        <input type="radio" name="gridSize" id="medium" value="Medium"> Medium
+        <input type="radio" name="gridSize" id="large" value="Large"> Large
+        <br>
+        <input type="submit" id="submit" name="Submit">
+      </form>
+    </div>
+    <div id="gameBoard">
+    </div>
   </main>
-  <div id="gameBoard">
-  </div>
-
 </body>
 </html>
