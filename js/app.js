@@ -57,8 +57,9 @@ Domineering.canPlayerAmove = function() {
 
 //Check for any side-by-side boxes that are empty. IF there are any, then the user has options and so play can continue.
 Domineering.canPlayerBmove = function() {
+
   var options = 0;
-  for (var i = 0; i < ((this.base * this.base) -1); i++) {
+  for (var i = 0; i < ((this.base * this.base) - this.base); i++) {
     var possibleSecondBoxB = i + 1;
     if (Domineering.checkBoxes(i, possibleSecondBoxB)) {
       options++;
@@ -183,7 +184,7 @@ Domineering.createBoard = function () {
 
   $('#gameBoard').append('<div id="rightPlayer">' + this.playerB + '</div>');
   $('#rightPlayer').append('<br> <br> <img src="images/PlayerBtile.png" alt="PlayerBtile">');
-  $('#rightPlayer').append('<br> <br> <p id="availableMovesB"> Available Moves: ' + (this.base * (this.base-1)) + '</p>');
+  $('#rightPlayer').append('<br> <br> <p id="availableMovesB"> Available Moves: calculating... </p>');
   $('#rightPlayer').css('width',200);
   $('#rightPlayer').css('height',(50 * (this.base-1)));
 
