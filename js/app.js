@@ -15,14 +15,9 @@ function Domineering (base) {
 Domineering.resetGame = function(e) {
   e.preventDefault();
   $('#gameBoard').empty();
+  $('#reset').remove();
   $('.welcome').show();
   $('#userInputForm').show();
-  // $('#currentPlayer').remove();
-  // $('#reset').remove();
-  // $('#leftPlayer').remove();
-  // $('#gameGrid').remove();
-  // $('#rightPlayer').remove();
-  // $('#userInputForm').show();
 };
 
 
@@ -166,10 +161,6 @@ Domineering.addButtonFunctionality = function() {
 
 //Based on the user input the GUI is generated
 Domineering.createBoard = function () {
-  $('#body').append('<div id="gameBoard"></div>');
-  // $('#gameBoard').css('width', ((50 * this.base) + 600));
-  // $('#gameBoard').css('height', ((50 * this.base) + 200));
-
   $('#gameBoard').append('<h1>Domineering<h1>');
   $('#gameBoard').append('<hr>');
   $('#gameBoard').find('hr').css('width', '670px');
@@ -180,10 +171,10 @@ Domineering.createBoard = function () {
   $('#leftPlayer').append('<br> <br> <img src="images/PlayerAtile.png" alt="PlayerAtile">');
   $('#leftPlayer').append('<br> <br> <p id="availableMovesA"> Available Moves: ' + (this.base * (this.base-1)) + '</p>');
 
-  $('#rightPlayer').css('width',200);
-  $('#leftPlayer').css('height',(50 * (this.base-1)));
-
+  $('#leftPlayer').css('width',200);
+  // $('#leftPlayer').css('height',(25 * this.base));
   $('#gameBoard').append('<div id="gameGrid"></div>');
+
   $('#gameGrid').append('<ul></ul>');
   for (var i = 0; i < (this.base * this.base); i++) {
     var $square = $('<li></li>');
@@ -197,11 +188,14 @@ Domineering.createBoard = function () {
   $('#rightPlayer').append('<br> <br> <img src="images/PlayerBtile.png" alt="PlayerBtile">');
   $('#rightPlayer').append('<br> <br> <p id="availableMovesB"> Available Moves: calculating... </p>');
   $('#rightPlayer').css('width',200);
-  $('#rightPlayer').css('height',(50 * (this.base-1)));
+  // $('#rightPlayer').css('height',(25 * this.base));
+
+  $('#gameBoard').css('width',1050);
+  $('#gameBoard').css('height',850);
 
   $('#gameBoard').append('<button type="button" id="reset">Reset</button>');
   $('#reset').css('clear', 'both');
-  $('#reset').on('click', Domineering.resetGame);
+  $('#gameBoard').on('click', '#reset', Domineering.resetGame);
 
   Domineering.addButtonFunctionality.call(game);
 };

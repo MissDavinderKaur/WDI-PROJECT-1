@@ -1,7 +1,8 @@
 body {
-  background: #FAFAFA;
+  background-color: #FAFAFA;
   font-family: 'Nunito Sans', sans-serif;
   color: #333;
+  text-align: center;
 }
 
 .welcome {
@@ -19,51 +20,11 @@ body {
   text-align: justify;
 }
 
-main{
-  background-color: #fafafa;
-  text-align: center;
-}
-
-h1, p, form, div {
-  color: #454B47;
-}
-
 h1 {
   text-transform: uppercase;
   letter-spacing: 1px;
   font-size: 90px;
   font-family: 'Russo One', sans-serif;
-}
-
-input[type="radio"] {
-  margin: 10px;
-}
-
-#submit, #reset {
-  background: #5FAE57;
-  margin: 10px;
-  padding: 10px 60px;
-  font-size: 16px;
-  border: 1px solid #378B2E;
-  border-radius: 2px;
-  color: #fff;
-}
-
-/*#submit:active, #reset:active {
-transform: translateY(5px);
-}*/
-
-#gameBoard {
-  margin: 0 auto;
-  width: 955px;
-}
-
-#currentPlayer {
-  text-align: center;
-  /* background-color: #E8E8E8; */
-  width: 300px;
-  margin: 25px auto;
-  padding: 10px;
 }
 
 hr {
@@ -74,18 +35,56 @@ hr {
   background-image: linear-gradient(#714C8F, #5FAE57);
 }
 
-#leftPlayer, #rightPlayer {
-  text-align: center;
-  background-color: #fafafa;
-  width: 200px;
-  height: 400px;
-  float: left;
-  margin: 0px 5px;
-  padding: 20px;
+input[type="radio"] {
+  margin: 10px;
 }
 
+#submit, #reset {
+  border: 1px solid #378B2E;
+  border-radius: 2px;
+  margin: 10px;
+  padding: 10px 60px;
+  background: #5FAE57;
+  font-size: 16px;
+  color: #fff;
+  display: block;
+  margin: 0px auto;
+}
+
+#gameBoard {
+  margin: 0 auto;
+  justify-content: center;
+}
+
+#currentPlayer {
+  text-align: center;
+  background-color: #DCDCDC;
+  width: 300px;
+  margin: 25px auto;
+  padding: 10px;
+}
+
+#leftPlayer,#rightPlayer {
+  text-align: center;
+  background-color: #fafafa;
+  margin: 0px;
+  padding: 20px;
+  display: inline-block;
+  position: absolute;
+}
+
+#leftPlayer{
+  left: 200px;
+}
+
+#rightPlayer{
+  right: 200px;
+}
+
+
 #gameGrid {
-  float: left;
+  display: inline-block;
+  margin-bottom: 20px;
 }
 
 ul {
@@ -107,22 +106,6 @@ li {
   background-color: #f2f2f2;
   padding: 0px;
 }
-
-/*#playerAname {
-background: #5FAE57;
-padding: 10px;
-border: 0;
-color: #fff;
-}
-
-
-
-#playerBname {
-background: #9173AA;
-padding: 10px;
-border: 0;
-color: #fff;
-}*/
 
 .Aplayed { background-color: #714C8F; }
 .Bplayed { background-color: #5FAE57; }
