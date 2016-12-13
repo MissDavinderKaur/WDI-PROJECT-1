@@ -110,6 +110,7 @@ Domineering.makeBmove = function (e) {
       if (Domineering.canPlayerAmove.call(game)){
         Domineering.changePlayer.call(game);
       } else {
+        $('#availableMovesA').html('Available Moves: 0');
         $('#currentPlayer').html(this.playerA + ' cannot make a move. <br> <br> Therefore the winner is ' + this.playerB);
       }
     }
@@ -126,6 +127,7 @@ Domineering.makeAmove = function (e) {
       if (Domineering.canPlayerBmove.call(game)){
         Domineering.changePlayer.call(game);
       } else {
+        $('#availableMovesB').html('Available Moves: 0');
         $('#currentPlayer').html(this.playerB + ' cannot make a move. <br> <br> Therefore the winner is ' + this.playerA);
       }
     }
