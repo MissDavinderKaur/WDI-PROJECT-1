@@ -27,10 +27,10 @@ Domineering.resetGame = function(e) {
 Domineering.changePlayer = function() {
   if (game.currPlayer === 'Player A'){
     game.currPlayer = 'Player B';
-    $('#currentPlayer').html("Current Player: " + game.playerB);
+    $('#currentPlayer').html('Current Player: ' + game.playerB);
   } else {
     game.currPlayer = 'Player A';
-    $('#currentPlayer').html("Current Player: " + game.playerA);
+    $('#currentPlayer').html('Current Player: ' + game.playerA);
   }
 };
 
@@ -46,8 +46,11 @@ Domineering.canPlayerAmove = function() {
   }
 
   if (options > 0) {
+    $('#availableMovesA').html('Available Moves: ' + options);
+    $('#availableMovesB').html('Available Moves: calculating...');
     return true;
   } else {
+    $('#availableMovesA').html('Available Moves: ' + options);
     return false;
   }
 };
@@ -63,8 +66,11 @@ Domineering.canPlayerBmove = function() {
   }
 
   if (options > 0) {
+    $('#availableMovesB').html('Available Moves: ' + options);
+    $('#availableMovesA').html('Available Moves: calculating...');
     return true;
   } else {
+    $('#availableMovesB').html('Available Moves: ' + options);
     return false;
   }
 };
@@ -160,6 +166,8 @@ Domineering.createBoard = function () {
 
   $('#gameBoard').append('<div id="leftPlayer">' + this.playerA + '</div>');
   $('#leftPlayer').append('<br> <br> <img src="images/PlayerAtile.png" alt="PlayerAtile">');
+  $('#leftPlayer').append('<br> <br> <p id="availableMovesA"> Available Moves: ' + (this.base * (this.base-1)) + '</p>');
+
   $('#rightPlayer').css('width',200);
   $('#leftPlayer').css('height',(50 * (this.base-1)));
 
@@ -175,6 +183,7 @@ Domineering.createBoard = function () {
 
   $('#gameBoard').append('<div id="rightPlayer">' + this.playerB + '</div>');
   $('#rightPlayer').append('<br> <br> <img src="images/PlayerBtile.png" alt="PlayerBtile">');
+  $('#rightPlayer').append('<br> <br> <p id="availableMovesB"> Available Moves: ' + (this.base * (this.base-1)) + '</p>');
   $('#rightPlayer').css('width',200);
   $('#rightPlayer').css('height',(50 * (this.base-1)));
 
