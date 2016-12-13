@@ -27,10 +27,10 @@ Domineering.resetGame = function(e) {
 Domineering.changePlayer = function() {
   if (game.currPlayer === 'Player A'){
     game.currPlayer = 'Player B';
-    $('#currentPlayer').html('Current Player: ' + game.playerB);
+    $('#currentPlayer').html("Current Player: " + game.playerB);
   } else {
     game.currPlayer = 'Player A';
-    $('#currentPlayer').html('Current Player: ' + game.playerA);
+    $('#currentPlayer').html("Current Player: " + game.playerA);
   }
 };
 
@@ -149,7 +149,9 @@ Domineering.addButtonFunctionality = function() {
 //Based on the user input the GUI is generated
 Domineering.createBoard = function () {
   $('body').append('<p id="currentPlayer">' + this.playerA + '</p>');
-  $('body').append('<button type="button" id="reset" name="Reset"></button>');
+  $('body').append('<button type="button" id="reset">Reset</button>');
+  $('#reset').css('width', 100);
+  $('#reset').css('height', 50);
   $('#reset').on('click', Domineering.resetGame);
 
 
