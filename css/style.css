@@ -1,27 +1,54 @@
 body{
   background: url("../images/background.jpg");
-  background-color: gray;
-  text-align: center;
 }
+
 main{
+  text-align: center;
   background-color: white;
 }
 
-h1 {
-  color: pink;
+h1, p, form {
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  color: #454B47;
+}
+
+input[type="radio"] {
+  margin: 10px;
+}
+
+#submit, #reset {
+  border: none;
+  width: 100px;
+  height: 30px;
+  margin: 15px;
+  font-weight: bold;
+}
+
+#gameBoard {
+  margin: 0 auto;
+}
+
+#currentPlayer {
+  text-align: center;
+  color: white;
+  background-color: #7F7A52;
+  width: 300px;
+  margin: 10px auto;
+  padding: 10px;
+}
+
+#leftPlayer {
+  margin-left: 45px;
 }
 
 #leftPlayer, #rightPlayer {
   background-color: white;
-  border: 1px solid gray;
+  border: 4px solid #454B47;
   width: 200px;
   height: 400px;
   float: left;
   margin: 0;
-}
-
-p{
-  color: pink;
+  padding: 20px;
 }
 
 #gameGrid {
@@ -29,28 +56,26 @@ p{
 }
 
 ul {
+  border: 1px solid #454B47;
   margin: 0 auto;
   padding: 0;
-  border: 1px solid white;
-  text-align: center;
 }
 
 li {
-  text-align: center;
   list-style-type: none;
   float: left;
   width: 50px;
   height: 50px;
-  border: 1px solid white;
+  border: 1px solid #454B47;
   box-sizing: border-box;
-  background-color: purple;
+  background-color: #C3C5C4;
   padding: 0px;
 }
 
 .Aplayed {
-  background-color: blue;
+  background-color: #28535A;
 }
 
 .Bplayed {
-  background-color: red;
+  background-color: #A5302F;
 }

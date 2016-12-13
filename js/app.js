@@ -97,7 +97,7 @@ Domineering.makeBmove = function (e) {
       if (Domineering.canPlayerAmove.call(game)){
         Domineering.changePlayer.call(game);
       } else {
-        $('#currentPlayer').html(this.playerA + ' cannot make a move. Therefore the winner is ' + this.playerB);
+        $('#currentPlayer').html(this.playerA + ' cannot make a move. <br> <br> Therefore the winner is ' + this.playerB);
       }
     }
   }
@@ -113,7 +113,7 @@ Domineering.makeAmove = function (e) {
       if (Domineering.canPlayerBmove.call(game)){
         Domineering.changePlayer.call(game);
       } else {
-        $('#currentPlayer').html(this.playerB + ' cannot make a move. Therefore the winner is ' + this.playerA);
+        $('#currentPlayer').html(this.playerB + ' cannot make a move. <br> <br> Therefore the winner is ' + this.playerA);
       }
     }
   }
@@ -148,17 +148,22 @@ Domineering.addButtonFunctionality = function() {
 
 //Based on the user input the GUI is generated
 Domineering.createBoard = function () {
-  $('body').append('<p id="currentPlayer">' + this.playerA + '</p>');
-  $('body').append('<button type="button" id="reset">Reset</button>');
-  $('#reset').css('width', 100);
-  $('#reset').css('height', 50);
+  $('#body').append('<div id="gameBoard"></div>');
+  $('#gameBoard').css('width', ((50 * this.base) + 600));
+  $('#gameBoard').css('height', ((50 * this.base) + 200));
+
+  $('#gameBoard').append('<button type="button" id="reset">Reset</button>');
+  $('#reset').css('float', 'right');
   $('#reset').on('click', Domineering.resetGame);
 
+  $('#gameBoard').append('<p id="currentPlayer"> Current Player: ' + this.playerA + '</p>');
 
-  $('body').append('<div id="leftPlayer">' + this.playerA + '</div>');
-  $('#leftPlayer').css('height',(50 * this.base));
+  $('#gameBoard').append('<div id="leftPlayer">' + this.playerA + '</div>');
+  $('#leftPlayer').append('<br> <br> <img src="images/PlayerAtile.png" alt="PlayerAtile">');
+  $('#rightPlayer').css('width',200);
+  $('#leftPlayer').css('height',(50 * (this.base-1)));
 
-  $('body').append('<div id="gameGrid"></div>');
+  $('#gameBoard').append('<div id="gameGrid"></div>');
   $('#gameGrid').append('<ul></ul>');
   for (var i = 0; i < (this.base * this.base); i++) {
     var $square = $('<li></li>');
@@ -168,8 +173,10 @@ Domineering.createBoard = function () {
   $('ul').css('width',(50 * this.base));
   $('ul').css('height',(50 * this.base));
 
-  $('body').append('<div id="rightPlayer">' + this.playerB + '</div>');
-  $('#rightPlayer').css('height',(50 * this.base));
+  $('#gameBoard').append('<div id="rightPlayer">' + this.playerB + '</div>');
+  $('#rightPlayer').append('<br> <br> <img src="images/PlayerBtile.png" alt="PlayerBtile">');
+  $('#rightPlayer').css('width',200);
+  $('#rightPlayer').css('height',(50 * (this.base-1)));
 
   Domineering.addButtonFunctionality.call(game);
 };

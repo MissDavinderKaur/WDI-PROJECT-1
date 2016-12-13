@@ -13,18 +13,21 @@ crossorigin="anonymous"></script>
 <body>
   <main>
   <h1>Domineering.....</h1>
-  <p> Two players take turns to place dominoes on the grid, covering up squares. One plays tiles vertically, the other plays horizontally. The first player who cannot move loses. </p>
+  <p> RULES: Two players take turns to place dominoes on the grid, covering up squares. One plays tiles vertically, the other plays horizontally. The first player who cannot move loses. </p>
   <form id="userInputForm">
     Player 1: <input type="text" id="playerAname">
     <br> <br>
     Player 2: <input type="text" id="playerBname" label="Player 2">
     <br> <br>
-    Small<input type="radio" name="gridSize" id="small" value="Small">
-    Medium<input type="radio" name="gridSize" id="medium" value="Medium">
-    Large<input type="radio" name="gridSize" id="large" value="Large">
-    <br> <br>
-    <input type="submit" name="submit">
+    <input type="radio" name="gridSize" id="small" value="Small"> Small
+    <input type="radio" name="gridSize" id="medium" value="Medium"> Medium
+    <input type="radio" name="gridSize" id="large" value="Large"> Large
+    <br>
+    <input type="submit" id="submit" name="Submit">
   </form>
   </main>
+  <div id="gameBoard">
+  </div>
+
 </body>
 </html>
