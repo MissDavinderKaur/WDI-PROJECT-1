@@ -20,4 +20,4 @@ Building the win-logic for this game was definitely the most challenging but rew
 The biggest challenge I faced was working out how to tackle the win logic! I wasn't able to pseudo code it but wanted to write the JavaScript code for it. This is obviously a recipe for failure. So I spent a long time rubber-ducking how exactly the logic would work, until I was able to write concise pseudo code. From this I was able to start writing the code (and reusing where I could)
  
 ##Next Steps
-I would like to add multiplayer functionality (up to 4 people) and also allow the players to decide which size of tile they would like to play (instead of just a standard size)
+I would like to add multiplayer functionality (up to 4 people). It would also be great to allow the users to decide which tile direction and size they would like to play. Finally, I think I would like to buikd a cumulative score board so that users could play again and again. 
